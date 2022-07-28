@@ -54,6 +54,11 @@ INSTALLED_APPS = [
     'snsapp',
 ]
 
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = '/main/'
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -81,6 +86,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'devsns.wsgi.application'
 

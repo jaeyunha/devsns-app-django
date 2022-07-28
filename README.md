@@ -1,3 +1,3 @@
-- This is a devloper-sns project with Django
+# This is a devloper-sns project with Django
 
-* Took out static folder that has bootstrap files.
+1. Took out static folder that has bootstrap files.
