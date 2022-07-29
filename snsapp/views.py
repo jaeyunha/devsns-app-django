@@ -1,23 +1,23 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .forms import PostForm, CommentForm, FreeCommentForm, FreePostForm
 from .models import Post, FreePost
+from django.core.paginator import Paginator
 
 # Create your views here.
 def home(request):
     posts = Post.objects.all()
+    paginator = Paginator(posts, 5)
+    pagnum = request.GET.get('page')
+    posts = paginator.get_page(pagnum)
+
     return render(request, 'index.html', {'posts':posts})
 
 def postcreate(request):
-    # request method가 POST일 경우
-        # 입력값 저장
     if request.method == 'POST' or request.method == 'FILES':
-        PostForm(request.POST, request.FILES)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return redirect('/home')
-
-    # request method가 GET일 경우
-        # from 입력 html 띄우기
+            return redirect('home')
     else:
         form = PostForm()
     return render(request, 'post_form.html', {'form':form})
